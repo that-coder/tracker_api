@@ -1,17 +1,19 @@
-
-
-const tracker_api = async (req, res) => {
-
-  // health check
-  if (req.params["health"] === "health") {
-    res.write(JSON.stringify({success: true, msg: "Health check success"}))
-    res.end()
+// get status from iphone health app
+const getHealthStatus = async (req, res) => {
+  const { healthStatus } = req.body;
+  try {
+    const health = await prisma.health.create({
+      data: {
+        healthStatus,
+      },
+    });
+    res.status(200).json(health);
+  } catch (error) {
+    res.status(500).json({ statusCode: 500, message: error.message });
   }
-
-  // Add your code here
-  res.write(JSON.stringify({success: true, msg: `Hello tracker_api`}))
-  res.end()
-  
 }
 
-export default tracker_api
+// export the functions
+module.exports = {
+  getHealthStatus,
+}
