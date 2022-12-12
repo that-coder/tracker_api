@@ -1,0 +1,13 @@
+{
+  "name": "tracker_api",
+  "type": "function",
+  "source": {
+    "https": "https://github.com/that-coder/tracker_api",
+    "ssh": "git@github.com:that-coder/tracker_api.git"
+  },
+  "language": "nodejs",
+  "start": "node index.js",
+  "build": "",
+  "postPull": "npm i",
+  "standAloneBlock": false
+}
